@@ -2,25 +2,48 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const padsArr = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
+  const padsArr = ["q", "w", "e", "a", "s", "d", "z", "x", "c"];
 
   const [power, setPower] = useState(true);
   const [bank, setBank] = useState(true);
 
   const clickHandler = (key: string) => {
-    console.log(key);
+    const audioElement = document.getElementById(
+      key
+    ) as HTMLAudioElement | null;
+    switch (key) {
+      case "q":
+        if (audioElement) {
+          audioElement.src =
+            "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3";
+          audioElement.play();
+        }
+        break;
+      case "w":
+        if (audioElement) {
+          audioElement.src =
+            "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3";
+          audioElement.play();
+        }
+        break;
+    }
   };
+
   const handleKeyDown = (event: KeyboardEvent) => {
     clickHandler(event.key);
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
+    if (power) {
+      document.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.removeEventListener("keydown", handleKeyDown);
+    }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [power]);
 
   return (
     <>
@@ -30,6 +53,7 @@ function App() {
             return (
               <div onClick={() => clickHandler(item)} className="drum-pad">
                 {item}
+                <audio id={item}></audio>
               </div>
             );
           })}
