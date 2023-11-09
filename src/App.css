@@ -1,0 +1,77 @@
+#drum-machine {
+  width: 660px;
+  height: 300px;
+  outline: 5px solid orange;
+  background-color: #b3b3b3;
+  display: flex;
+}
+
+.drums {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.drum-pad {
+  width: 100px;
+  height: 80px;
+  background-color: grey;
+  border-radius: 5px;
+  margin-right: 10px;
+  box-shadow: black 3px 3px 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+}
+.power,
+.bank {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: 900;
+}
+.select {
+  border: 1px solid black;
+  width: 55px;
+  background-color: black;
+  height: 20px;
+}
+.power-turn {
+  background-color: blue;
+  width: 27px;
+  height: 100%;
+  float: left;
+  cursor: pointer;
+}
+
+#display {
+  width: 200px;
+  background-color: grey;
+  margin: 15px auto;
+  text-align: center;
+  padding: 15px;
+  color: black;
+  font-weight: bolder;
+}
+
+.volume-slider {
+  width: 100%;
+}
+input {
+  width: 100%;
+}
