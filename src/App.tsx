@@ -1,14 +1,37 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const padsArr = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
+
+  const [power, setPower] = useState(true);
+  const [bank, setBank] = useState(true);
+
+  const clickHandler = (key: string) => {
+    console.log(key);
+  };
+  const handleKeyDown = (event: KeyboardEvent) => {
+    clickHandler(event.key);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
       <div id="drum-machine">
         <div className="drums">
           {padsArr.map((item) => {
-            return <div className="drum-pad">{item}</div>;
+            return (
+              <div onClick={() => clickHandler(item)} className="drum-pad">
+                {item}
+              </div>
+            );
           })}
         </div>
 
@@ -16,7 +39,10 @@ function App() {
           <div className="power">
             <p>Power</p>
             <div className="select">
-              <div className="power-turn"></div>
+              <div
+                onClick={() => setPower(!power)}
+                className={power ? "power-turn" : "power-turn power-turn-off"}
+              ></div>
             </div>
           </div>
           <div id="display">chord</div>
@@ -26,7 +52,10 @@ function App() {
           <div className="bank">
             <p>Bank</p>
             <div className="select">
-              <div className="power-turn"></div>
+              <div
+                onClick={() => setBank(!bank)}
+                className={bank ? "power-turn" : "power-turn power-turn-off"}
+              ></div>
             </div>
           </div>
         </div>

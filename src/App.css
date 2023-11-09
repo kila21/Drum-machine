@@ -58,6 +58,9 @@
   float: left;
   cursor: pointer;
 }
+.power-turn-off {
+  float: right;
+}
 
 #display {
   width: 200px;
